@@ -12,6 +12,7 @@ function Nav () {
     <NavLink to= '/blah' exact activeStyle={{color: "green"} } style={styles.children} >All People</NavLink>
     <NavLink to= '/frequency' exact activeStyle={{color: "green"}} style={styles.children}>Frequency </NavLink>
     <NavLink to= '/duplicates' exact activeStyle={{color: "green"}} style={styles.children}>Duplicates </NavLink>
+    <NavLink to= '/duplicates' exact activeStyle={{color: "green"}} style={styles.children}>Test </NavLink>
 </ul>
  </Navbar>
 </div>
