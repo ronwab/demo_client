@@ -1,4 +1,3 @@
-
 import React , {useEffect, useState} from 'react'
 import {Table} from 'react-bootstrap'
 const BASE_URL = process.env.BASE_URL
@@ -11,11 +10,11 @@ const [myPeopleData, setMyPeopleData] = useState ([])
       try
        {
 
-//        const url = `${BASE_URL}/people`
        const url = `http://localhost:3000/people`
        const results = await fetch(url)
        const data = await results.json()
       setMyPeopleData(data.request.data)
+      console.log(data.request.data)
        }catch(e) {
        console.log(e)
        }
@@ -23,12 +22,9 @@ const [myPeopleData, setMyPeopleData] = useState ([])
   }
   getMyPeople()
  }, [myPeopleData.first_name])
-console.log("outside ", myPeopleData)
-
-
 return (
-<div>
-<Table striped bordered hover>
+<div style= {styles}>
+<Table striped bordered hover size="sm" >
   <thead>
     <tr>
       <th>First Name</th>
@@ -52,4 +48,9 @@ return (
 
 </div>
 )}
+const styles = {
+
+padding: "100px 80px"
+}
+
 export default MyPeople
