@@ -2,24 +2,24 @@ import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap'
 const BASE_URL = process.env.BASE_URL
 
-function MyPeople() {
-  const [myPeopleData, setMyPeopleData] = useState([])
+function PeopleDuplicates() {
+  const [myDuplicates, setMyDuplicates] = useState([])
 
   useEffect(() => {
     const getMyPeople = async () => {
       try {
 
-        const url = `http://localhost:3000/people`
+        const url = `http://localhost:3000/duplicate_checker`
         const results = await fetch(url)
         const data = await results.json()
-        setMyPeopleData(data.request.data)
+        setMyDuplicates(data.message)
       } catch (e) {
         console.log(e)
       }
 
     }
     getMyPeople()
-  }, [myPeopleData.first_name])
+  }, [setMyDuplicates])
   return (
     <div style={styles}>
       <Table striped bordered hover size="sm" >
@@ -28,17 +28,17 @@ function MyPeople() {
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
-            <th>Title</th>
+            <th>Duplicates?</th>
           </tr>
         </thead>
         <tbody>
-          {myPeopleData.map((peopleFields, i) => (
+          {myDuplicates.map((duplicates, i) => (
             <tr key={i}>
 
-              <td> {peopleFields.first_name}</td>
-              <td> {peopleFields.last_name}</td>
-              <td> {peopleFields.email_address}</td>
-              <td> {peopleFields.title}</td>
+              <td> {duplicates.first_name}</td>
+              <td> {duplicates.last_name}</td>
+              <td> {duplicates.email_address}</td>
+              <td> {duplicates.is_duplicate.toString()}</td>
             </tr>
           ))}
         </tbody>
@@ -52,4 +52,4 @@ const styles = {
   padding: "100px 80px"
 }
 
-export default MyPeople
+export default PeopleDuplicates
